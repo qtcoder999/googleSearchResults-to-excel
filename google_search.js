@@ -1,10 +1,5 @@
 const args = process.argv;
-var xl = require('excel4node');
-var Q = require('q');
-var lastRow1 = 0;
-var lastRow2 = 0;
-var wb = new xl.Workbook();
-var ws = wb.addWorksheet('Sheet 1');
+
 const { Builder, By, Key, until } = require('selenium-webdriver');
 var driver = new Builder()
     .forBrowser('chrome')
@@ -26,45 +21,52 @@ async function TakeTextsAndURLs() {
     console.log(URLs);
 }
 function getURLs(URLs) {
-    var i = 0;
-    driver.wait(until.titleIs(process.argv[2] + ' - Google Search'), 2000).then(function () {
-        driver.findElements(By.css(".iUh30")).then(function (elements) {
-                 elements.forEach(function (element, index) {
-                         element.getText().then(function (text) {
-                            URLs.push(text);
-                            i++;
-                            if (i == elements.length) {
-                                //if (count1 <= length1) {
-                                //count1++;
-                                //driver.findElement(By.css("a[aria-label=\"Page " + count1 + "\"]")).click();
-                                // }
-                            }
-                        })
-             
-                })
-        })
-    })
-}
-function getTitles(titles) {
-    var i = 0;
-    driver.wait(until.titleIs(process.argv[2] + ' - Google Search'), 2000).then(function () {
-        driver.findElements(By.css(".bkWMgd .g .r>a")).then(function (elements) {
-                 elements.forEach(function (element, index) {
-                         element.getText().then(function (text) {
-                            titles.push(text);
-                           
-                            i++;
-                            if (i == elements.length) {
-                                //if (count1 <= length1) {
-                                //count1++;
-                                //driver.findElement(By.css("a[aria-label=\"Page " + count1 + "\"]")).click();
-                                // }
-                            }
-                        })
-             
-                })
-        
-        })
-    })
+	return new Promise(function (resolve, reject) {
+	    var i = 0;
+	    driver.wait(until.titleIs(process.argv[2] + ' - Google Search'), 2000).then(function () {
+	        driver.findElements(By.css(".iUh30")).then(function (elements) {
+	                 elements.forEach(function (element, index) {
+	                         element.getText().then(function (text) {
+	                            URLs.push(text);
+	                            i++;
+	                            if (i == elements.length) {
+	                            	resolve	(1);
+	                                //if (count1 <= length1) {
+	                                //count1++;
+	                                //driver.findElement(By.css("a[aria-label=\"Page " + count1 + "\"]")).click();
+	                                // }
+	                            }
+	                        })
+	             
+	                })
+	        })
+	    })
+
+	});
 }
 
+function getTitles(titles) {
+	return new Promise(function (resolve, reject) {
+			    var i = 0;
+			    driver.wait(until.titleIs(process.argv[2] + ' - Google Search'), 2000).then(function () {
+			        driver.findElements(By.css(".bkWMgd .g .r>a")).then(function (elements) {
+			                 elements.forEach(function (element, index) {
+			                         element.getText().then(function (text) {
+			                            titles.push(text);
+			                           
+			                            i++;
+			                            if (i == elements.length) {
+			                            	resolve();
+			                                //if (count1 <= length1) {
+			                                //count1++;
+			                                //driver.findElement(By.css("a[aria-label=\"Page " + count1 + "\"]")).click();
+			                                // }
+			                            }
+			                        })
+			             
+			                })
+			        
+			        })
+			    })
+     });
+}
