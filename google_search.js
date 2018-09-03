@@ -121,7 +121,6 @@ async function mainInit() {
 async function delayed(i) {
 	return new Promise(async function (resolve, reject) {
 		if (i >= 2) {
-			console.log(i);
 			await navigate1(i);
 			resolve();
 		}
