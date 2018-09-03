@@ -2,6 +2,8 @@
 
 #Excel.xlsx
 Excel.xlsx
+#data.xlsx
+data.xlsx
 
 # compiled output
 /dist
