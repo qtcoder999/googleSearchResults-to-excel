@@ -36,17 +36,6 @@ var s = driver.get('http://www.google.com/ncr')
 
 async function writeToExcel(titles, URLs) {
 
-	// for (var i in titles) {
-	// 	ws.cell(i, 1)
-	// 		.string(titles[i])
-	// 		.style(style);
-	// 	ws.cell(i, 2)
-	// 		.string(URLs[i])
-	// 		.style(style);
-	// }
-	// ws.cell(i, 1)
-	// .string("Paras")
-	// .style(style);
 	for (var i = 0; i < titles.length; i++) {
 		ws.cell(i + 1, 1)
 			.string(titles[i])
@@ -54,7 +43,7 @@ async function writeToExcel(titles, URLs) {
 		ws.cell(i + 1, 2)
 		.string(URLs[i])
 		.style(style2);
-		//console.log(typeof(titles[i]));
+
 	}
 
 }
@@ -67,11 +56,9 @@ async function TakeTextsAndURLs() {
 	await getTitles(titles);
 	await getURLs(URLs);
 	await writeToExcel(titles, URLs);
-	//console.log("Reached here")
+
 	wb.write('data.xlsx');
 
-	// console.log(titles);
-	// console.log(URLs);
 }
 function getURLs(URLs) {
 	return new Promise(function (resolve, reject) {
@@ -84,10 +71,6 @@ function getURLs(URLs) {
 						i++;
 						if (i == elements.length) {
 							resolve(1);
-							//if (count1 <= length1) {
-							//count1++;
-							//driver.findElement(By.css("a[aria-label=\"Page " + count1 + "\"]")).click();
-							// }
 						}
 					})
 
@@ -106,14 +89,10 @@ function getTitles(titles) {
 				elements.forEach(function (element, index) {
 					element.getText().then(function (text) {
 						titles.push(text);
-						//console.log(titles);
+
 						i++;
 						if (i == elements.length) {
 							resolve(1);
-							//if (count1 <= length1) {
-							//count1++;
-							//driver.findElement(By.css("a[aria-label=\"Page " + count1 + "\"]")).click();
-							// }
 						}
 					})
 
