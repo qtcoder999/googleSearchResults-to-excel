@@ -77,7 +77,7 @@ function getURLs(URLs) {
 						URLs.push(text);
 						i++;
 						if (i == elements.length) {
-							resolve(1);
+							resolve();
 						}
 					})
 
@@ -99,7 +99,7 @@ function getTitles(titles) {
 
 						i++;
 						if (i == elements.length) {
-							resolve(1);
+							resolve();
 						}
 					})
 
