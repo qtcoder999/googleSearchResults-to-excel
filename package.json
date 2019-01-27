@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/qtcoder999/new-automation-imdb-youtube/issues"
   },
-  "homepage": "https://github.com/qtcoder999/new-automation-imdb-youtube#readme"
+  "homepage": "https://github.com/qtcoder999/new-automation-imdb-youtube#readme",
+  "dependencies": {
+    "chromedriver": "^2.45.0",
+    "selenium-webdriver": "^4.0.0-alpha.1"
+  }
 }
