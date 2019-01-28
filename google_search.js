@@ -3,29 +3,41 @@ var excel = require("./excel");
 require("chromedriver");
 const { Builder, By, Key, until } = require("selenium-webdriver");
 
-async function devMain() {
-  var driver = new Builder().forBrowser("chrome").build();
+var driver = new Builder().forBrowser("chrome").build();
+let url = "http://www.google.com/ncr";
+
+async function devMain(item) {
+  mywindow = await driver.executeScript('window.open("' + url + '"); ');
+
+  //await driver.executeScript('mywindow.focus();');
+
   await driver
-    .get("http://www.google.com/ncr")
-    .then(_ =>
-      driver.findElement(By.name("q")).sendKeys("game of thrones", Key.RETURN)
-    );
-
-  await driver.sleep(1000);
-
-  await driver.findElement(By.css(".bkWMgd .g .rc .r a")).click();
+    .get(url)
+    .then(driver.findElement(By.name("q")).sendKeys(item, Key.RETURN))
 }
-var r
-const foo = async () => {
-    var r = await excel.getDataFromExcel();
-}
+//   await driver.wait(function() {
+//     return driver.isElementPresent(By.css(".bkWMgd .g .rc .r a"));
+//   });
 
-devMain();
-
-foo();
-
-console.log(r);
-
-//movieNames.data.map(item => item.toString());
+//   await driver
+//     .findElement(By.css(".bkWMgd .g .rc .r a"))
+//     .click()
+// }
 
 //devMain();
+let arr;
+let tabCount = 0;
+
+const getData = async () => {
+  return await excel.getDataFromExcel();
+};
+
+getData().then(result => {
+  passToDev(result[0].data);
+});
+
+const passToDev = arr => {
+  arr.map(item => {
+    devMain(item[0]);
+  });
+};
