@@ -3,17 +3,22 @@ var excel = require("./excel");
 require("chromedriver");
 const { Builder, By, Key, until } = require("selenium-webdriver");
 
-var driver = new Builder().forBrowser("chrome").build();
 let url = "http://www.google.com/ncr";
+let windowCount = 0;
+let driver;
 
 async function devMain(item) {
+  if (windowCount === 0) {
+    driver = new Builder().forBrowser("chrome").build();
+  }
   mywindow = await driver.executeScript('window.open("' + url + '"); ');
 
   //await driver.executeScript('mywindow.focus();');
+  await driver.switch_to_window(driver.window_handles[windowCount]);
 
   await driver
     .get(url)
-    .then(driver.findElement(By.name("q")).sendKeys(item, Key.RETURN))
+    .then(driver.findElement(By.name("q")).sendKeys(item, Key.RETURN)).then(++windowCount);
 }
 //   await driver.wait(function() {
 //     return driver.isElementPresent(By.css(".bkWMgd .g .rc .r a"));
@@ -26,7 +31,6 @@ async function devMain(item) {
 
 //devMain();
 let arr;
-let tabCount = 0;
 
 const getData = async () => {
   return await excel.getDataFromExcel();
