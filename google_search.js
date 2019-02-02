@@ -18,7 +18,8 @@ async function devMain(item) {
 
   await driver
     .get(url)
-    .then(driver.findElement(By.name("q")).sendKeys(item, Key.RETURN)).then(++windowCount);
+    .then(driver.findElement(By.name("q")).sendKeys(item, Key.RETURN))
+    .then(++windowCount);
 }
 //   await driver.wait(function() {
 //     return driver.isElementPresent(By.css(".bkWMgd .g .rc .r a"));
