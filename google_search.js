@@ -5,12 +5,11 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 
 let url = "http://www.google.com/ncr";
 let windowCount = 0;
-let driver;
+let driver = new Builder().forBrowser("chrome").build();
 
 async function devMain(item) {
-  if (windowCount === 0) {
-    driver = new Builder().forBrowser("chrome").build();
-  }
+  console.log(item);
+
   mywindow = await driver.executeScript('window.open("' + url + '"); ');
 
   //await driver.executeScript('mywindow.focus();');
@@ -21,14 +20,6 @@ async function devMain(item) {
     .then(driver.findElement(By.name("q")).sendKeys(item, Key.RETURN))
     .then(++windowCount);
 }
-//   await driver.wait(function() {
-//     return driver.isElementPresent(By.css(".bkWMgd .g .rc .r a"));
-//   });
-
-//   await driver
-//     .findElement(By.css(".bkWMgd .g .rc .r a"))
-//     .click()
-// }
 
 //devMain();
 let arr;
