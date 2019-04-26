@@ -1,26 +1,45 @@
 {
-  "name": "new-automation-imdb-youtube",
+  "name": "@drazik/eslint-prettier-starter",
   "version": "1.0.0",
-  "description": "",
+  "description": "A starter kit that includes linting and reformatting JS files as a precommit hook",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "precommit": "lint-staged",
     "start": "node google_search.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/qtcoder999/new-automation-imdb-youtube.git"
+    "url": "git+https://github.com/drazik/eslint-prettier-starter.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "starter",
+    "eslint",
+    "prettier"
+  ],
+  "author": "Cyrille Perois <cperois@outlook.com>",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/qtcoder999/new-automation-imdb-youtube/issues"
+    "url": "https://github.com/drazik/eslint-prettier-starter/issues"
   },
-  "homepage": "https://github.com/qtcoder999/new-automation-imdb-youtube#readme",
-  "dependencies": {
+  "homepage": "https://github.com/drazik/eslint-prettier-starter#readme",
+  "devDependencies": {
+    "@wandiparis/eslint-config-wandi": "^2.0.0-alpha.1",
+    "eslint": "^4.4.1",
+    "eslint-config-prettier": "^2.3.0",
+    "eslint-plugin-import": "^2.7.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.0.3",
+    "prettier": "^1.5.3",
     "chromedriver": "^2.45.0",
     "node-xlsx": "^0.12.1",
     "selenium-webdriver": "^4.0.0-alpha.1"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
   }
 }
