@@ -12,7 +12,6 @@ async function openChrome() {
   return new Promise(async function(resolve, reject) {
     driver = new Builder().forBrowser("chrome").build();
     driver.then(function() {
-      // console.log(Date.now(), "openchrome promise resolved");
       resolve();
     });
   });
@@ -51,7 +50,6 @@ const getHandles = async () => {
       Using a temporary workaround
     */
     arrayDuplicate.push(arrayDuplicate.shift());
-    // console.log(handles.length);
   });
 };
 const openTabs = async count => {
