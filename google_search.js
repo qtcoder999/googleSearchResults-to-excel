@@ -1,11 +1,11 @@
 const excel = require("./excel");
 require("chromedriver");
 
-const { Builder, By, Key, until } = require("selenium-webdriver");
+const { Builder, By, until } = require("selenium-webdriver");
 
-let url = "http://www.google.com/",
+let url = "https://google.com",
   driver,
-  suffix = "goodreads",
+  suffix = "imdb",
   arrayDuplicate = [];
 
 async function openChrome() {
@@ -44,6 +44,13 @@ const mainLoop = async (arr, count) => {
 const getHandles = async () => {
   await driver.getAllWindowHandles().then(async function(handles) {
     arrayDuplicate = handles;
+    /*
+      Selenium issue
+      https://github.com/w3c/webdriver/issues/386
+
+      Using a temporary workaround
+    */
+    arrayDuplicate.push(arrayDuplicate.shift());
     // console.log(handles.length);
   });
 };
