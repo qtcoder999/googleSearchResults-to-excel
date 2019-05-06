@@ -12,7 +12,11 @@
     "type": "git",
     "url": "https://github.com/drazik/eslint-prettier-starter.git"
   },
-  "keywords": ["starter", "eslint", "prettier"],
+  "keywords": [
+    "starter",
+    "eslint",
+    "prettier"
+  ],
   "author": "Paras Anand <speed1992@gmail.com>",
   "license": "MIT",
   "bugs": {
@@ -20,18 +24,28 @@
   },
   "homepage": "https://github.com/qtcoder999/google-automation-searchTerm-suffix/",
   "devDependencies": {
-    "@wandiparis/eslint-config-wandi": "^2.0.0-alpha.1",
+    "@wandiparis/eslint-config-wandi": "^2.0.0",
     "chromedriver": "^2.46.0",
-    "eslint": "^4.4.1",
-    "eslint-config-prettier": "^2.3.0",
-    "eslint-plugin-import": "^2.7.0",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.10.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
     "husky": "^0.14.3",
-    "lint-staged": "^4.0.3",
+    "lint-staged": "^4.3.0",
     "node-xlsx": "^0.12.1",
-    "prettier": "^1.5.3",
+    "prettier": "^1.17.0",
     "selenium-webdriver": "^4.0.0-alpha.1"
   },
   "lint-staged": {
-    "*.js": ["eslint --fix", "prettier --write", "git add"]
+    "*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-wandi": "^1.2.0",
+    "eslint-plugin-react": "^7.11.0"
   }
 }
