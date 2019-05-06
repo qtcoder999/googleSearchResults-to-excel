@@ -30,7 +30,9 @@ const searchTheTerm = async searchTerm => {
     .get(url)
     .then(
       await driver
-        .findElement(driver.wait(until.elementLocated(searchLocator)))
+        .findElement(async () =>
+          driver.wait(until.elementLocated(searchLocator))
+        )
         .sendKeys(`${searchTerm} ${suffix}`)
     )
     .then(await driver.findElement(iAmFeelingLuckyLocator).click());
